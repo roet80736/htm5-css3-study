@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>操作像素</title>
+<style type="text/css">
+canvas {
+	border:1px solid #000;
+}
+</style>
+<script type="text/javascript">
+function Draw(){
+	var canvas=document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	var newImg = new Image();
+	newImg.src= "../images/Chaplin.jpg";
+	newImg.onload=function(){
+		context.drawImage(newImg,0,0,400,300);
+		context.save();
+		// 获取图像数据
+		var imageData = context.getImageData(0, 0, 400, 300);
+		// 修改ImageData对象的data数据，处理为反向
+		for(var i=0,n=imageData.data.length;i<n;i+=4){
+			// 红色部分
+			imageData.data[i+0]	=255-imageData.data[i+0];
+			// 绿色部分
+			imageData.data[i+1]	=255-imageData.data[i+1];
+			// 蓝色部分
+			imageData.data[i+2]	=255-imageData.data[i+2];
+		}
+		// 绘制该图像数据
+		context.putImageData(imageData,200,150);
+	}
+	
+}
+window.addEventListener("load",Draw,true);
+</script>
+</head>
+<body>
+<canvas id="canvas" width="400" height="300">你的浏览器不支持该功能！</canvas>
+</body>
+</html>

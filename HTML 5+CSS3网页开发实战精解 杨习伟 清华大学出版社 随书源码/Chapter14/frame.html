@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="uft-8" />
+<title>框架页面</title>
+<script type="text/javascript">
+var originWhite = "http://yxw740:8081";   /* 指定合法的消息来源 */
+/* 消息事件回调函数 */
+function messageFrameHandler(e){
+	if(e.origin==originWhite){         /* 验证消息来源 */
+		sendToMain(e.source.window,e.data);  /* 调用数据处理函数sendToMain() */
+	}else{
+		console.log("非法的消息来源！");
+	}
+}
+/* 数据处理 */
+function sendToMain(win,edata){
+	var val = parseInt(document.getElementById("name").value);
+	var data= parseInt(edata);
+	var result = val * data;      /* 计算结果 */
+	win.postMessage(result,"*");	    /* 将计算结果回发数据给消息的来源窗口 */
+	document.getElementById("getData").textContent = data;
+	document.getElementById("inputData").textContent = val;
+	document.getElementById("result").textContent = result;
+}
+/* 页面加载处理 */
+window.onload=function(){
+	/* 检测浏览器支持情况 */
+	if(typeof window.postMessage === "undefined"){
+		console.log("您的浏览器不支持postMesage！");		
+	}else{
+		window.addEventListener("message", messageFrameHandler, true); /* 添加监听事件message */
+	}
+}
+</script>
+<style type="text/css">
+span{
+	color:blue;
+}
+body{
+	font-size:14px;
+	line-height:22px;
+	background-color:#FFFFFF;
+}
+</style>
+</head>
+<body>
+<p>
+	<input id="name" name="name" type="text" />
+</p>
+<p>本页面会做如下操作2：<br>
+接收的数字<span id="getData"></span> * 页面表单的数字<span id="inputData"></span> = 计算结果<span id="result"></span><br>
+返回计算结果。</p>
+</body>
+</html>

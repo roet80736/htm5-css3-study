@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>HTML5 Geolocation</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="content">
+  <h1> HTML5 Geolocation </h1>
+  <p class="message" id="message"></p>
+  <div id="resultText">
+    <table width="90%" border="0" cellpadding="0" cellspacing="1">
+      <tr>
+        <td>纬度</td>
+        <td id="latitude">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>经度</td>
+        <td id="longitude">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>经纬精度</td>
+        <td id="accuracy">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>海拔</td>
+        <td id="altitude">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>海拔精度</td>
+        <td id="altitudeAccuracy"></td>
+      </tr>
+      <tr>
+        <td>前进方向</td>
+        <td id="heading">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>移动速度</td>
+        <td id="speed">&nbsp;</td>
+      </tr>
+    </table>
+  </div>
+  <div style="clear:both;"></div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+// 回调函数：position中包含了所有的地理位置信
+function successCallback(position){
+	// 显示position中的信息
+	var temp = "<table border='0' cellpadding='0' cellspacing='1'>";
+	temp += "<tr><td>纬度</td><td>" + position.coords.latitude + "</td></tr>";
+	temp += "<tr><td>经度</td><td>" + position.coords.longitude + "</td></tr>";
+	temp += "<tr><td>经纬精度</td><td>" + position.coords.accuracy + "</td></tr>";
+	temp += "<tr><td>海拔</td><td>" + position.coords.altitude + "</td></tr>";
+	temp += "<tr><td>海拔精度</td><td>" + position.coords.altitudeAccuracy + "</td></tr>";
+	temp += "<tr><td>前进方向</td><td>" + position.coords.heading + "</td></tr>";
+	temp += "<tr><td>移动速度</td><td>" + position.coords.speed + "</td></tr>";
+	temp += "</table>";
+	document.getElementById("resultText").innerHTML = temp;
+}
+// 错误回调函数：error中包含了错误的信息
+function errorCallback(error){
+	// 显示error中的错误信息
+	var err = "";
+	switch(error.code){
+		case error.PERMISSION_DENIED:
+			err = "用户阻止了该页面获取地理位置:" + error.message;
+			alert(err);
+			break;
+		case error.POSITION_UNAVAILABLE:
+			err = "浏览器没能获取到地理位置：" + error.message + "\n是否尝试再次请求？";
+			confirm(err)?navigator.geolocation.getCurrentPosition(successCallback,errorCallback):"";
+			break;
+		case error.TIMEOUT:
+			err = "获取地理位置超时：" + error.message + "\n是否尝试再次请求？";
+			confirm(err)?navigator.geolocation.getCurrentPosition(successCallback,errorCallback):"";
+			break;
+		default:
+			err = "获取地理位置时，产生了一个错误：" + error.message;
+			alert(err);
+			break;
+	}
+}
+if(navigator.geolocation){
+	navigator.geolocation.getCurrentPosition(successCallback,errorCallback,{
+				enableHighAccuracy : false,
+				timeout : 0,
+				maximumAge : 1000
+			});   // 单次请求地理位置
+}
+</script>

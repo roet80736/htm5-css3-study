@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>半透明的遮蔽层</title>
+<style type="text/css">
+ul {
+	list-style:none;
+	margin:10px;
+	padding:0;
+	height:160px;
+}
+li {
+	float:left;
+	margin:5px;
+	width:100px;
+	height:80px;
+}
+li img {
+	width:100px;
+	height:80px;
+	opacity:0.5;
+	cursor:pointer;
+}
+li img:hover {
+	opacity:1;
+}
+.bg {
+	position:absolute;
+	background-color:hsla(0, 0%, 50%, 0.5);
+	top:0;
+	left:0;
+}
+.box {
+	position:absolute;
+	top:130px;
+	left:150px;
+	z-index:99;
+	border-radius:4px;
+	padding:5px;
+	background-color:#fff;
+	line-height:20px;
+	font-size:12px;
+	color:#666;
+	font-weight:bold;
+}
+.box a {
+	display:block;
+	position:absolute;
+	z-index:100;
+	top:-8px;
+	left:498px;
+	border-radius:9px;
+	border:2px solid #e4e4e4;
+	background-color:#bbb;
+	line-height:14px;
+	width:14px;
+	text-align:center;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#FFF;
+	text-decoration:none;
+}
+.box img {
+	width:500px;
+	height:375px;
+}
+</style>
+<script type="text/javascript">
+	// 打开图片预览
+	function popbox(obj){		
+		// 创建半透明的遮蔽层
+		document.body.style.overflow="hidden";		
+		var w = window.innerWidth;
+		var h = window.innerHeight;
+		var bgdiv = document.createElement("div");
+		bgdiv.style.width = w + "px";
+		bgdiv.style.height = h + "px";
+		bgdiv.className = "bg";
+		bgdiv.id = "bg";
+		document.body.appendChild(bgdiv);
+		// 创建图片预览层
+		var box = document.createElement("div");
+		box.id = "floatbox";
+		box.className = "box";				
+		box.innerHTML="<a href='javascript:closebox()'>&times;</a>";
+		box.innerHTML+="<img src="+ obj.src+" />";		
+		if(obj.alt){
+			box.innerHTML+="<div>"+ obj.alt+"</div>";
+		}
+		// 图片预览的居中定位
+		box.style.left=(w-510)/2+"px";
+		box.style.top=(h-405)/2+"px";
+		document.body.appendChild(box);
+	}
+	// 关闭图片预览
+	function closebox(){
+		document.body.style.overflow="";
+		var bg=document.getElementById("bg");
+		bg.parentNode.removeChild(bg);
+		var box=document.getElementById("floatbox");
+		box.parentNode.removeChild(box);
+	}
+</script>
+<body>
+<ul>
+  <li><img src="../images/J10.jpg" alt="歼10战斗机" onclick="popbox(this)" /></li>
+  <li><img src="../images/F22.jpg" alt="F22战斗机" onclick="popbox(this)" /></li>
+  <li><img src="../images/Su35.jpg" alt="苏35战斗机" onclick="popbox(this)" /></li>
+</ul>
+</body>
+</html>

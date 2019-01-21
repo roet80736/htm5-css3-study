@@ -1,0 +1,21 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>播放快进</title>
+<script type="text/javascript">
+function Forward(){
+	var el=document.getElementById("myPlayer");
+	var time=el.currentTime;        /* 获取属性currentTime */
+	el.currentTime=time+600;        /* 设置属性currentTime，快进600s */
+}
+</script>
+</head>
+<body>
+<video id="myPlayer" width="600" controls>  
+  <source src="resources/video.mp4" type="video/mp4">
+  你的浏览器不支持video元素
+</video><br>
+<input type="button" value="快进" onClick="Forward()" />
+</body>
+</html>

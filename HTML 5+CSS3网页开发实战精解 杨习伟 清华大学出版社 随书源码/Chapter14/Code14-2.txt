@@ -1,0 +1,12 @@
+
+
+interface MessageEvent : Event {
+	readonly attribute any data;
+	readonly attribute DOMString origin;
+	readonly attribute DOMString lastEventId;
+	readonly attribute WindowProxy source;
+	readonly attribute MessagePortArray ports;
+	void initMessageEvent(in DOMString typeArg, in boolean canBubbleArg, in boolean cancelableArg,
+		in any dataArg, in DOMString or iginArg, in DOMString lastEventIdArg,
+		in WindowProxy sourceArg, in MessagePortArray portsArg);
+};

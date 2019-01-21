@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>使用Storage对象存储Json数据</title>
+<style type="text/css">
+body {
+	font-size:14px;
+}
+table {
+	border-collapse:collapse;
+}
+</style>
+<script type="text/javascript">
+var flag = 1;
+ window.sessionStorage.clear();
+// 保存数据到sessionStorage
+function SaveStorage(frm){
+	// 使用表单数据建立json对象
+	var jsonObject = new Object();
+	jsonObject.name = frm.name.value;
+	jsonObject.age = frm.age.value;
+	jsonObject.email = frm.email.value;
+	// 序列化json对象为字符串数据
+	var stringData = JSON.stringify(jsonObject);
+	
+	var storage = window.sessionStorage;
+	storage.setItem("key"+flag,stringData);
+	
+	flag++;
+}
+// 遍历并显示sessionStorage中的数据
+function Show(){
+	var storage = window.sessionStorage;
+	var result = "";
+	for(var i=0;i<storage.length;i++){
+		var key = storage.key(i);           /* 获取键key */
+		var stringData = storage.getItem(key);   /* 通过键key获取值value */
+		var jsonObject = JSON.parse(stringData);
+
+		result += "姓名:" + jsonObject.name + "；年龄：" + jsonObject.age + "；邮件：" + jsonObject.email +"；<br />";
+	}
+	/* 在指定的地方显示获取的存储内容 */
+	document.getElementById("formdata").innerHTML = result;	
+}
+</script>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="100%" border="1" bordercolor="#CCCCCC" cellpadding="3" cellspacing="0">
+    <tr>
+      <td>姓名</td>
+      <td><input type="text" name="name" id="name" /></td>
+    </tr>
+    <tr>
+      <td>年龄</td>
+      <td><input type="text" name="age" id="age" /></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><input type="text" name="email" id="email" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="button" value="保存" onclick="SaveStorage(this.form)" />
+        <input type="button" value="显示" onclick="Show()" /></td>
+    </tr>
+  </table>
+</form>
+<div id="formdata"></div>
+</body>
+</html>

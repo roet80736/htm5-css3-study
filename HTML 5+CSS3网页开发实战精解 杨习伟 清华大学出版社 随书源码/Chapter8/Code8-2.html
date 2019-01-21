@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>图8-3  在Canvas中绘制的文字"囧"</title>
+<style type="text/css">
+canvas{
+	border:1px solid #ccc;
+}
+</style>
+<script type="text/javascript">
+function DrawText(){
+	var canvas=document.getElementById("canvas");
+	var context=canvas.getContext("2d");
+	// 设置字体样式、颜色及对齐方式
+	context.font="98px 黑体";
+	context.fillStyle="#036";
+	context.textAlign="center";
+	//执行绘制
+	context.fillText("囧",100,120,200);
+}
+window.addEventListener("load", DrawText,true);
+</script>
+</head>
+<body style="text-align:center">
+<canvas id="canvas" width="200" height="200">你的浏览器不支持该功能！</canvas>
+</body>
+</html>

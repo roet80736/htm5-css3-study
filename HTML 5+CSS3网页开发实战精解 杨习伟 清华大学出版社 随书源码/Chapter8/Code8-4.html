@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>绘制一个圆形和矩形叠加的图形</title>
+<style type="text/css">
+canvas {
+	border:1px solid #000;
+}
+</style>
+<script type="text/javascript">
+function Draw(){
+	var canvas=document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+
+	// 创建绘图路径
+	context.beginPath();			//创建一个新的路径
+	context.arc(150,100,50,0,Math.PI*2,true);		// 圆形路径
+	context.rect(50,50,100,100);		// 矩形路径
+	context.closePath();
+
+	// 设置样式
+	context.strokeStyle="#000";		// 设置边框颜色
+	context.lineWidth=3;			// 设置边框宽度
+	context.fillStyle="#f90";		// 设置填充颜色
+
+	// 填充矩形形状
+	context.stroke();		// 绘制边框
+	context.fill();		// 填充区域
+}
+window.addEventListener("load",Draw,true);
+</script>
+</head>
+<body style="overflow:hidden">
+<canvas id="canvas" width="400" height="300">你的浏览器不支持该功能！</canvas>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Web Workers</title>
+<script type="text/javascript">
+function Greeting(){
+	// 检测浏览器支持性
+	if(typeof Worker === "undefined"){
+		console.log("浏览器不支持Web Workers");
+		return;
+	}
+	// 创建专属线程
+	var worker = new Worker("Code16-1.js");
+	// 监听线程的消息
+	worker.onmessage = function(e){
+		console.log(e);
+		document.getElementById("msg").innerText = e.data;
+	}
+	// 监听线程的错误
+	worker.onerror = function(e){
+		console.warn(e.message,e);
+		worker.terminate();
+	}	
+	var val = document.getElementById("Name").value;
+	// 向线程发生消息
+	worker.postMessage(val);
+	console.log(worker);
+}
+</script>
+</head>
+<body>
+<input type="text" id="Name" value="" />
+<input type="button" value="欢迎辞" onClick="Greeting()" />
+<span id="msg"></span>
+</body>
+</html>

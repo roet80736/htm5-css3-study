@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# 文件的开头必须是CACHE MANIFEST
+# 可以在这里设置文件的版本号
+# version1.2
+CACHE:
+css/style.css
+script.js
+NETWORK:
+images/pictrue.jpg
+*
+FALLBACK:
+css/style2.css css/style.css
+CACHE:
+other.html

@@ -1,0 +1,79 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>根据窗口尺寸选择不同的样式</title>
+<meta name="viewport" content="width=620px" />
+<style type="text/css">
+* {
+	font-size:36px;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFF;
+}
+nav {
+	background-color:#0066ff;
+	height:260px;
+}
+section {
+	background-color:#f90;
+	height:260px;
+}
+aside {
+	background-color:#009900;
+	height:260px;
+}
+/* 窗口宽度大于900px */
+@media screen and (min-width:900px) {
+nav {
+ float:left;
+ width:25%;
+}
+section {
+ float:left;
+ width:50%;
+}
+aside {
+ float:left;
+ width:25%;
+}
+}
+/* 窗口宽度大于在600px和900px之间 */
+@media screen and (min-width:600px) and (max-width:900px) {
+nav {
+ float:left;
+ width:40%;
+ height:200px;
+}
+section {
+ float:left;
+ width:60%;
+ height:200px;
+}
+aside {
+ height:100px;
+ float:none;
+ clear:both;
+}
+}
+/* 窗口宽度小于在600px */
+@media screen and (max-width:600px) {
+nav {
+ height:150px;
+}
+section {
+ height:150px;
+}
+aside {
+height:150px;
+}
+}
+</style>
+</head>
+<body>
+<nav> Nav </nav>
+<section>Section</section>
+<aside>Aside</aside>
+</body>
+</html>
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/assets/css/small-device.css" /> 

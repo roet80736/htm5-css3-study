@@ -1,0 +1,41 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>过渡效果</title>
+<style type="text/css">
+div {
+	margin:100px auto;
+	width:200px;
+	height:100px;
+	background-color:#00F;
+	/* 设置过渡属性 */
+	-webkit-transition-property:all;
+	-moz-transition-property:all;
+	-o-transition-property:all;
+	transition-property:all;
+	/* 设置过渡时间 */
+	-webkit-transition-duration:1000ms;
+	-moz-transition-duration:1000ms;
+	-o-transition-duration:1000ms;
+	transition-duration:1000ms;
+	/* 设置过渡方式 */
+	-webkit-transition-timing-function:ease-out;
+	-moz-transition-timing-function:ease-out;
+	-o-transition-timing-function:ease-out;
+	transition-timing-function:ease-out;
+}
+div:hover  {
+	background-color:#F90;
+	/* 设置变形：旋转240deg */
+	-webkit-transform:rotate(240deg);
+	-moz-transform:rotate(240deg);
+	-o-transform:rotate(240deg);
+	transform:rotate(240deg);
+}
+</style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

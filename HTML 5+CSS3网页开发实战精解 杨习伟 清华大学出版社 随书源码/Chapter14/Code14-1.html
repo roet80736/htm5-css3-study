@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>test</title>
+<meta charset="utf-8">
+<script type="text/javascript">
+// 检测在线状态
+function TestingNetwork(){
+	if(window.navigator.onLine){
+		console.log("在线状态");
+	}else{
+		console.log("离线状态");
+	}
+}
+// 添加在线状态监听器
+window.addEventListener("online",function(e){
+	console.log("在线状态1");
+},true);
+// 添加离线状态监听器
+window.addEventListener("offline",function(e){
+	console.log("离线状态1");
+},true);
+</script>
+</head>
+<body onLoad="TestingNetwork()">test
+</body>
+</html>

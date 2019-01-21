@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html manifest="">
+<head>
+<title>本地数据库访问示例</title>
+<style type="text/css">
+ul{
+	width:340px;
+	border:1px solid #CCCCCC;
+	padding:0;
+}
+li{
+	list-style:none;
+	line-height:25px;
+	border-bottom:1px solid #CCCCCC;
+}
+li:hover{
+	background-color:#e4e4e4;
+}
+span{
+	width:200px;
+	display:inline-block;
+}
+</style>
+<script type="text/javascript">
+/* 打开数据库，如果不存在则创建 */
+var db = openDatabase("TestDB", "1.0","测试数据库",2*1024*1024);
+/* 创建数据表，如果存在则不创建 */
+db.transaction(function (tx){
+	tx.executeSql('CREATE TABLE IF NOT EXISTS UserName (id unique, Name)');
+});
+/* 添加数据 */
+function Insert(){
+	var name = document.getElementById("name");
+	if(name.value == "")return; /* 没有值，则不处理 */	
+	var maxid;
+	/* 获取可用的最小id值 */
+	db.transaction(function (tx){
+		tx.executeSql('SELECT id FROM UserName ORDER BY id DESC',[],function(tx,result){
+			if(result.rows.length){
+				maxid = parseInt(result.rows.item(0).id) + 1;
+			}else{
+				maxid = 1;
+			}
+		}, null);
+	});
+	/* 添加一条数据，并更新显示 */
+	db.transaction(function(tx){
+		tx.executeSql('INSERT INTO UserName (id, Name) VALUES ('+ maxid +', "'+ name.value +'")',[],function(tx,result){
+			SetForm();
+			Query();
+		});
+	});	
+}
+/* 更新数据 */
+function Update(){
+	db.transaction(function(tx){
+		var id = document.getElementById("id");
+		var name = document.getElementById("name");
+		console.log(name.value);
+		tx.executeSql('Update UserName Set Name = "'+ name.value +'" where id='+ id.value,[],function(tx,result){
+			SetForm();
+			Query();
+		});
+	});	
+}
+/* 删除数据 */
+function Delete(id){
+	db.transaction(function(tx){
+		tx.executeSql('Delete From UserName where id='+ id,[],function(tx,result){
+			SetForm();
+			Query();
+		});
+	});	
+}
+/* 查询数据 */
+function Query(){
+	var name = document.getElementById("name");
+	db.transaction(function (tx){
+		tx.executeSql('SELECT * FROM UserName where Name like"%'+ name.value +'%" ORDER BY id DESC',[],function(tx,results){
+			var len = results.rows.length;
+			var msg="";
+			for(var i=0;i<len;i++){
+				msg += "<li>&middot; ";
+				msg += "<span>" + results.rows.item(i).Name + "</span>"; 
+				msg += " <a href='###' onclick=\"SetForm('"+ results.rows.item(i).id +"','"+ results.rows.item(i).Name +"')\">编辑</a>";
+				msg += " <a href='###' onclick='Delete("+ results.rows.item(i).id +")'>删除</a>";
+				msg += "</li>";
+			}
+			document.getElementById("msg").innerHTML = msg;
+		}, null);
+	});
+}
+/* 初始化表单 */
+function SetForm(id,name){
+	if(id){
+		document.getElementById("id").value=id;
+		document.getElementById("name").value=name;
+		document.getElementById("Submit").onclick=function(){Update();}
+		document.getElementById("Submit").value="更新";
+	}else{
+		document.getElementById("id").value="";
+		document.getElementById("name").value="";
+		document.getElementById("Submit").onclick=function(){Insert();}
+		document.getElementById("Submit").value="添加";
+	}
+}
+</script>
+</head>
+<body>
+<form>
+	<input id="id" name="id" type="hidden" />
+	<input id="name" name="name" type="text" placeholder="请输入姓名" />
+	<input type="button" id="Submit" name="Submit" value="添加" onclick="Insert()" />
+	<input type="button" value="查询" onclick="Query()" />
+</form>
+<ul id="msg" name="msg">
+</ul>
+</body>
+</html>

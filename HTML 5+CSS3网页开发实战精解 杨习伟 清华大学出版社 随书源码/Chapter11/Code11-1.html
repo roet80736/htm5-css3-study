@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>拖放页面的内容</title>
+<style type="text/css">
+#dragSource {
+	width:200px;
+	margin:5px;
+	border:1px solid #666;
+	color:#333;
+	font-size:18px;
+}
+#dropTarget{
+	width:400px;
+	height:200px;
+	padding:10px;
+	border:1px solid #015EAC;
+	margin:5px;
+}
+.dragover {
+	outline:3px solid #F90;
+	outline-offset:-3px;
+	background-color:#FFC;
+}
+</style>
+<script type="text/javascript">
+function DragStart(){
+	var source = document.getElementById('dragSource');   /* 拖放源元素 */	
+	/* 监听ondragstart事件：作用在源元素上 */
+	source.addEventListener('dragstart', function(e) {
+		e.dataTransfer.setData('text/plain', e.target.innerHTML);   /* 向dataTransfer对象中追加数据 */
+		e.dataTransfer.effectAllowed="copy";
+	},false);
+}
+/* 添加函数DragStart值window.onload监听事件 */
+window.addEventListener('load', DragStart,false);
+</script>
+<script type="text/javascript">
+function Drop(){
+	var target = document.getElementById('dropTarget');   /* 拖放目标元素 */
+	/* 监听ondrop事件：作用在目标元素上 */
+	target.addEventListener('drop', function(e) {
+		var data=e.dataTransfer.getData('text/plain');              /* 取得dataTransfer对象中的数据 */
+		this.innerHTML += data;
+		e.dataTransfer.dropEffect="copy";
+		this.className="";     /* 还原样式 */
+	},false);
+}
+/* 添加函数DragStart值window.onload监听事件 */
+window.addEventListener('load', Drop,false);
+</script>
+<script type="text/javascript">
+function DragOver(){
+	var target = document.getElementById('dropTarget');   /* 拖放目标元素 */
+	/* 监听ondragover事件：作用在目标元素上 */
+	target.addEventListener('dragover', function(e) {
+		this.className="dragover";     /* 鼠标拖放经过时的样式 */
+		e.preventDefault();            /* 取消浏览器默认处理 */
+	},false);
+}
+/* 添加函数DragStart值window.onload监听事件 */
+window.addEventListener('load', DragOver,false);
+</script>
+</head>
+<body>
+<!-- 源元素dragSource -->
+<div id="dragSource" draggable="true">拖这里<img src="images/icon6.png" width="75" height="72"></div>
+<!-- 目标元素dropTarget -->
+<div id="dropTarget"></div>
+</body>
+</html>

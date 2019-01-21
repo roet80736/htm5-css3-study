@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>把图片拖入浏览器</title>
+<style type="text/css">
+#dropTarget {
+	width:300px;
+	height:300px;
+	margin:10px 0 0 0;
+	border:1px solid #015EAC;
+}
+#dropTarget img {
+	width:90px;
+	height:60px;
+	margin:5px;
+	box-shadow:0 0 0 1px #666;
+}
+</style>
+<script type="text/javascript">
+// 定义目标元素的变量
+var target;
+// drop事件处理函数
+function dropHandle(e) {
+	var fileList  = e.dataTransfer.files,　　/*获取拖拽的文件*/
+	fileType;
+	// 遍历拖拽的文件
+	for(var i=0;i<fileList.length;i++){
+		fileType = fileList[i].type;
+		if (fileType.indexOf('image') == -1) {
+			alert('请拖拽图片');
+			return;
+		}
+		// 加载单个文件
+		loadImg(fileList[i]);
+	}
+}
+// 加载指定的图片文件，并追加至target对象的元素中
+function loadImg(file){
+	// 声明接口对象
+	var reader = new FileReader();
+	// 添加load事件处理
+	reader.onload = function(e) {
+		var oImg = document.createElement('img');
+		oImg.src = this.result;　　/* 获取读取的文件数据 */
+		target.appendChild(oImg);
+	}
+	// 读取文件
+	reader.readAsDataURL(file);
+}
+window.onload = function() {
+	// 获取目标元素
+	target = document.getElementById('dropTarget');
+	// 给目标元素添加dragover事件处理
+	target.addEventListener('dragover', function(e) {		
+		e.preventDefault();
+	}, false);
+	// 给目标元素添加drop事件处理，处理函数为dropHandle()
+	target.addEventListener('drop', dropHandle, false);	
+}
+</script>
+</head>
+<body>
+<div>把图片拖放到下面的方框。</div>
+<div id="dropTarget"></div>
+</body>
+</html>

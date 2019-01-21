@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Web Storage API</title>
+<script type="text/javascript">
+function CheckStorageSupport(){
+	if(window.sessionStorage){
+		console.log("浏览器支持sessionStorage特性!");
+	}else{
+		console.log("浏览器不支持sessionStorage特性!");
+	}
+	
+	if(window.localStorage){
+		console.log("浏览器支持localStorage特性!");
+	}else{
+		console.log("浏览器不支持localStorage特性!");
+	}
+}
+window.addEventListener("load",CheckStorageSupport,false);
+</script>
+</head>
+<body>
+Web Storage Test
+</body>
+</html>

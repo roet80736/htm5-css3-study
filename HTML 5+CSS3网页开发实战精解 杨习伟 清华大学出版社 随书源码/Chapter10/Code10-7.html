@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义错误提示信息</title>
+<script type="text/javascript">
+function CheckForm(frm){
+	var name=frm.name;
+	if(name.value==""){
+		name.setCustomValidity("请填写您的姓名！");   /* 自定义错误提示 */
+	}else{
+		name.setCustomValidity("");                 /* 取消自定义错误提示 */
+	}
+}
+</script>
+</head>
+<body>
+<div>
+  <form action="" method="post">
+    姓名：
+    <input id="name" name="name" placeholder="First and Last Name" required />
+    <input type="submit" value="提交" onClick="CheckForm(this.form)" />
+  </form>
+</div>
+</body>
+</html>

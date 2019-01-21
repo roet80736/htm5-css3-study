@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>FileReader接口的事件响应顺序</title>
+<script type="text/javascript">
+function FileReaderEvent(){
+	var blob=document.getElementById("files").files[0];
+	var message = document.getElementById("message");
+	var reader = new FileReader();      /* 声明接口对象 */
+	// 添加loadstart事件
+	reader.onloadstart=function(e){
+		message.innerHTML+= "Event:loadstart;<br />";
+	}
+	// 添加progress事件
+	reader.onprogress=function(e){
+		message.innerHTML+= "Event:progress;<br />";
+	}
+	// 添加load事件
+	reader.onload=function(e){
+		message.innerHTML+= "Event:load;<br />";
+	}
+	// 添加abort事件
+	reader.onabort=function(e){
+		message.innerHTML+= "Event:abort;<br />";
+	}
+	// 添加error事件
+	reader.onerror=function(e){
+		message.innerHTML+= "Event:error;<br />";
+	}
+	// 添加loadend事件
+	reader.onloadend=function(e){
+		message.innerHTML+= "Event:loadend;<br />";
+	}
+	reader.readAsDataURL(blob);     /* 读取文件至内存 */
+}
+</script>
+</head>
+<body>
+<form action="" method="post">
+  <input type="file" id="files" multiple accept="image/*" />
+  <input type="button" value="读取文件" onclick="FileReaderEvent()" />
+  <p id="message"></p>
+</form>
+</body>
+</html>

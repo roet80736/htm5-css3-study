@@ -1,0 +1,27 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>播放与暂停</title>
+<script type="text/javascript">
+var videoEl=null;
+function Play(){
+	videoEl.play();	  /* 播放视频 */
+}
+function Pause(){
+	videoEl.pause();   /* 暂停播放 */
+}
+window.onload=function(){
+	videoEl=document.getElementById("myPlayer");
+}
+</script>
+</head>
+<body>
+<video id="myPlayer" src="resources/video.mp4" width="600" controls> 
+  你的浏览器不支持video元素
+</video><br>
+<div id="time"></div>
+<input type="button" value="播放" onclick="Play()" />
+<input type="button" value="暂停" onclick="Pause()" />
+</body>
+</html>

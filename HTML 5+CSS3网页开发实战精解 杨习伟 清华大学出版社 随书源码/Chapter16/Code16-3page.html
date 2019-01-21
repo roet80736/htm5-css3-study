@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>线程嵌套示例</title>
+</head>
+<body>
+<p>结果:
+	<output id="result"></output>
+</p>
+<script type="text/javascript">
+	var worker = new Worker('Code16-3worker.js');
+	worker.onmessage = function (evt){
+		document.getElementById('result').innerHTML += "<br />"+ evt.data;
+	}
+	worker.onerror = function(e){
+		console.log(e.message);
+		worker.terminate();
+	}
+</script>
+</body>
+</html>

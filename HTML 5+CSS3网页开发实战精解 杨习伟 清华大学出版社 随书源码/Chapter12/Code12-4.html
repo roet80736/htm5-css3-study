@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>使用Storage对象保存页面内容</title>
+<style type="text/css">
+body {
+	font-size:14px;
+}
+table {
+	border-collapse:collapse;
+}
+</style>
+<script type="text/javascript">
+// 保存数据到sessionStorage
+function SaveStorage(frm){
+	var storage = window.sessionStorage;
+	storage.setItem("name",frm.name.value);
+	storage.setItem("age",frm.age.value);
+	storage.setItem("email",frm.email.value);
+	storage.setItem("phone",frm.phone.value);
+}
+// 遍历并显示sessionStorage中的数据
+function Show(){
+	var storage = window.sessionStorage;
+	var result="";
+	for(var i=0;i<storage.length;i++){
+		var key = storage.key(i);           /* 获取键key */
+		var value = storage.getItem(key);   /* 通过键key获取值value */
+		result += key + ":" + value + "；";
+	}
+	/* 在指定的地方显示获取的存储内容 */
+	document.getElementById("formdata").innerHTML = result;	
+}
+</script>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="100%" border="1" bordercolor="#CCCCCC" cellpadding="3" cellspacing="0">
+    <tr>
+      <td>姓名</td>
+      <td><input type="text" name="name" id="name" /></td>
+    </tr>
+    <tr>
+      <td>年龄</td>
+      <td><input type="text" name="age" id="age" /></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><input type="text" name="email" id="email" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="button" value="保存" onclick="SaveStorage(this.form)" />
+        <input type="button" value="显示" onclick="Show()" /></td>
+    </tr>
+  </table>
+</form>
+<div id="formdata"></div>
+</body>
+</html>

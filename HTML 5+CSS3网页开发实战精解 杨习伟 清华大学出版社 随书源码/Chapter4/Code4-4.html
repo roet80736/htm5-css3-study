@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>调整子元素的显示位置</title>
+<style type="text/css">
+.container {
+	display:-webkit-box;
+	display:-moz-box;
+	display:box;
+	/* 定义为横向编排显示 */
+	-webkit-box-orient:horizontal;             /* 兼容webkit内核 */
+	-moz-box-orient:horizontal;               /* 兼容gecko内核 */
+	box-orient:horizontal;                    /* 标准用法 */
+}
+.container div {
+	color:#FFF;
+	font-size:12px;
+	padding:10px;
+	line-height:20px;
+}
+.container div ul {
+	margin:0;
+	padding-left:20px;
+}
+.container .left-aside {
+	background-color:#F63;
+	/* 设置菜单栏的位置为2*/
+	-webkit-box-ordinal-group:2;            /* 兼容webkit内核 */
+	-moz-box-ordinal-group:2;               /* 兼容gecko内核 */
+	box-ordinal-group:2;                   /* 标准用法 */
+}
+.container .center-content {
+	background-color:#390;
+	width:200px;
+}
+.container .right-aside {
+	background-color:#039;
+	/* 设置工具栏的位置为3*/
+	-webkit-box-ordinal-group:3;            /* 兼容webkit内核 */
+	-moz-box-ordinal-group:3;               /* 兼容gecko内核 */
+	box-ordinal-group:3;                   /* 标准用法 */
+}
+</style>
+<body>
+<div class="container">
+  <div class="left-aside">
+    <h2>菜单</h2>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3</li>
+      <li>活动沙龙</li>
+    </ul>
+  </div>
+  <div class="center-content">
+    <h2>内容</h2>
+    <p>盒布局是CSS3发展的新型布局方式，它比传统的浮动布局方式更加完善、更加灵活，而使用方法却极为简单。</p>
+    <p>开启盒布局方法，就是设置display属性值为box（或inline-box）。</p>
+  </div>
+  <div class="right-aside">
+    <h2>工具</h2>
+    <ul>
+      <li>天气预报</li>
+      <li>货币汇率</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

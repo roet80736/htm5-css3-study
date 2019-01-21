@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>FileReader接口的方法示例</title>
+<script type="text/javascript">
+// 读取文件
+function ReadAs(action){
+	var blob=document.getElementById("files").files[0];
+	if(blob){
+		var reader = new FileReader();      /* 声明接口对象 */
+		// 根据参数action，选择读取文件的方法
+		switch (action.toLowerCase()){
+			case "binarystring":
+				reader.readAsBinaryString(blob);      /* 将文件读取为二进制字符串 */
+				break;
+			case "arraybuffer":
+				reader.readAsArrayBuffer(blob);       /* 将文件读取为数组缓冲区 */
+				break;
+			case "text":
+				reader.readAsText(blob);          /* 将文件读取为文本 */
+				break;
+			case "dataurl":
+				reader.readAsDataURL(blob);       /* 将文件读取为DataURL数据 */
+				break;
+		}
+		reader.onload=function(e){
+			// 访问FileReader的接口属性result，把读取到内存里的内容获取出来
+			var result = this.result;			
+			// 如果是图像文件，且读取为为DataURL数据，那么就显示为图片
+			if(/image\/\w+/.test(blob.type) && action.toLowerCase()=="dataurl"){
+				document.getElementById("result").innerHTML = "<img src='" + result + "' />";
+			}else{
+				document.getElementById("result").innerHTML = result;
+			}
+		}
+	}
+}
+</script>
+</head>
+<body>
+<form action="" method="post">
+  <input type="file" id="files" multiple accept="image/*" />
+  <br>
+  <input type="button" value="读取为数组缓存区" onclick="ReadAs('ArrayBuffer')" />
+  <br>
+  <input type="button" value="读取为二进制" onclick="ReadAs('BinaryString')" />
+  <br>
+  <input type="button" value="读取为文本" onclick="ReadAs('Text')" />
+  <br>
+  <input type="button" value="读取为图像" onclick="ReadAs('DataURL')" />
+  <p id="result"></p>
+</form>
+</body>
+</html>

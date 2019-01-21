@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>使用线程处理异步请求的数据</title>
+<style type="text/css">
+output{color:#006699;border:1px solid #CCCCCC;padding:5px;display:block;}
+</style>
+</head>
+<body>
+<p>线程处理结果:
+	<output id="result"></output>
+</p>
+<script type="text/javascript">
+	// 创建主线程
+	var worker = new window.Worker('Code16-4worker.js');
+	// 添加消息监听事件
+	worker.onmessage = function (evt){
+		var json = JSON.parse(evt.data); // JSON数据处理
+		var obj = document.getElementById('result');
+		obj.innerHTML += "最大值：" + json.maxValue;
+		obj.innerHTML += "；最小值：" + json.minValue;
+	}
+	// 添加错误监听事件
+	worker.onerror = function(e){
+		console.log(e.message);
+		worker.terminate();
+	}
+</script>
+</body>
+</html>

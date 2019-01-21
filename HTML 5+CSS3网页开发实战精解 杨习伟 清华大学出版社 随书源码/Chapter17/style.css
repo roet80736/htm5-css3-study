@@ -1,0 +1,46 @@
+/* CSS Document */
+
+body{
+	background-color:#ccc;
+}
+.content {
+	padding:10px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-color:#FFF;
+	border-radius:5px;
+	color:#333;
+}
+.content h1 {
+	font-size:18px;
+	margin:0;
+	line-height:25px;
+	border-bottom:2px solid #369;
+	color:#369;
+}
+.content .message {
+	background-color:#FF9;
+	padding:5px 10px;
+	border:1px solid #FC6;
+}
+.content #resultText {
+	float:left;
+	width:200px;	
+}
+.content #resultText table {
+	background-color:#ccc;
+	width:90%;
+}
+.content #resultText table td {
+	background-color:#FFF;
+	text-align:left;
+	font-size:12px;
+	padding:0 5px;
+	line-height:22px;
+}
+.content #resultMap {
+	float:left;
+	width:400px;
+	height:260px;
+	border:1px solid #ccc;
+}

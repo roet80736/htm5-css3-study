@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="uft-8" />
+<title></title>
+<title>Canvas</title>
+<style type="text/css">
+canvas{
+	border: 1px solid #CCCCCC;
+}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var c=document.getElementById("myCanvas");
+	var cxt=c.getContext("2d");
+	
+	cxt.translate(0,1400);
+	DrawLine(cxt,800);
+	
+	DrawLine(cxt,2);
+	
+}
+
+function DrawLine(cxt,rate){
+	var r = parseInt(rate)/500;
+	cxt.fillStyle="#FF0000";
+	for(var i=0;i<600;i++){
+		cxt.lineTo(i,-r*i);
+	}
+	cxt.stroke();
+	cxt.save();
+}
+</script>
+</head>
+
+<body>
+<canvas id="myCanvas" width="600" height="1400"></canvas>
+</body>
+</html>

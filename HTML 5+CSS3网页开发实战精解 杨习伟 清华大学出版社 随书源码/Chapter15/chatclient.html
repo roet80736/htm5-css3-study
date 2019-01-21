@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="uft-8" />
+<title>Web sockets</title>
+<style type="text/css">
+body{
+	font-size:12px;
+	line-height:22px;
+	font-family:"宋体";
+}
+h1{
+	font-size:18px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+input{
+	border:1px solid #333;
+}
+.container{
+	font-family: "Courier New";
+	width:500px;
+	height:200px;
+	overflow:auto;
+	padding:10px;
+	border:1px solid #ccc;
+	line-height:18px;
+}
+</style>
+<script type="text/javascript">
+	var ws;
+	var SocketCreated = false;	
+	window.onload = function(){
+		if (!window.WebSoket) {
+			Log("您的浏览器支持WebSocket. 您可以尝试连接到聊天服务器!", "OK");			
+		} else {
+			Log("您的浏览器不支持WebSocket。请选择其他的浏览器再尝试连接服务器。", "ERROR");
+			document.getElementById("ConnectButton").disabled = true;
+		}		
+	}
+	function Connection() {
+		if (SocketCreated && (ws.readyState == 0 || ws.readyState == 1)) {
+			ws.close();
+		} else {
+			Log("准备连接到聊天服务器 ...");
+			ws = new WebSocket("ws://localhost:8090/chat");				
+			SocketCreated = true;
+			document.getElementById("ConnectButton").value = "断开";
+			ws.onopen = function() {
+				Log("连接已经建立。", "OK");
+				ws.send("欢迎" + document.getElementById("txtName").value+"来到聊天室！");
+			}
+			ws.onmessage = function(event) {
+				Log(event.data);
+			}
+			ws.onclose = function() {
+				Log("连接关闭。", "ERROR");
+				document.getElementById("ConnectButton").value = "连接";
+			}
+			ws.onerror = function() {
+				Log("WebSocket错误。", "ERROR");
+			}
+		}
+	}
+</script>
+<script type="text/javascript">	
+	function SendData() {
+		var obj = document.getElementById("Data");
+		if (obj.value != "") {
+			ws.send(document.getElementById("txtName").value + "说：" + obj.value);
+			obj.value = "";
+		}
+	}
+	function Log(Text, MessageType) {
+		if (MessageType == "OK") Text = "<span style='color: green;'>" + Text + "</span>";
+		if (MessageType == "ERROR") Text = "<span style='color: red;'>" + Text + "</span>";
+		var LogContainer = document.getElementById("LogContainer");
+		LogContainer.innerHTML += Text + "<br />";
+		LogContainer.scrollTop = LogContainer.scrollHeight;		
+	}	
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+<form id="form1" runat="server">
+	<h1>WebSocket 聊天室</h1>
+	<div><input type="button" id="ConnectButton" value="连接" onClick="Connection()" /></div>
+	<div id='LogContainer' class='container'></div>
+	<div>
+		用户<input type="text" id="txtName" value="Yang" size="6" /><input type="text" id="Data" size="40" />
+		<button id='SendBut' type="button" onclick='SendData()'>发送</button>
+	</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>HTML5 Geolocation</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="content">
+  <h1> HTML5 Geolocation </h1>
+  <p class="message" id="message"></p>
+  <div id="resultText">
+    <table width="90%" border="0" cellpadding="0" cellspacing="1">
+      <tr>
+        <td>纬度</td>
+        <td id="latitude">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>经度</td>
+        <td id="longitude">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>经纬精度</td>
+        <td id="accuracy">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>海拔</td>
+        <td id="altitude">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>海拔精度</td>
+        <td id="altitudeAccuracy"></td>
+      </tr>
+      <tr>
+        <td>前进方向</td>
+        <td id="heading">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>移动速度</td>
+        <td id="speed">&nbsp;</td>
+      </tr>
+    </table>
+  </div>
+  <div style="clear:both;"></div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+// 成功回调函数：position中包含了所有的地理位置信
+function successCallback(position){
+	// 显示position中的地理位置信息
+}
+// 错误回调函数：error中包含了错误的信息
+function errorCallback(error){
+	// 显示error中的错误信息
+}
+var option = {}; // 可选参数
+if(navigator.geolocation){
+	navigator.geolocation.getCurrentPosition(successCallback,errorCallback,options);   // 单次请求地理位置
+}
+</script>

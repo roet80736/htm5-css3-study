@@ -1,0 +1,21 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>径向渐变</title>
+<style type="text/css">
+div {
+	width:400px;
+	height:200px;
+	background-color:#F90;
+	/* 基于Webkit内核的实现 */
+	background:-webkit-gradient(radial,200 100,10,200 100, 100, from(#f90),to(#0f0),color-stop(50%,blue));
+	/* 基于Gecko内核的实现 */
+	background:-moz-radial-gradient(200px 100px,circle,#f90 10px,blue,#0f0 100px);
+}
+</style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

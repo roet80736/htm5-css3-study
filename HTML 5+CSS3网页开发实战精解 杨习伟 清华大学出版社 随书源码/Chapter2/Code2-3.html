@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加content内容</title>
+<style type="text/css">
+/* 突出第一个字 */
+p:first-letter {
+	font-size:24px;
+	font-weight:bold;
+}
+/* 链接前加图片 */
+a[href$=doc]::before {
+ content:url(images/doc.png);
+}
+a[href$=pdf]::before {
+ content:url(images/pdf.png);
+}
+</style>
+</head>
+<body>
+<p>以下是参考资料：<br>
+  <a href="images/test.doc">参考资料1</a><br>
+  <a href="images/test.pdf">参考资料2</a> </p>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>模仿杂志的多列版式</title>
+<style type="text/css">
+body {
+	border:1px solid #f90;
+	padding:10px;
+	-webkit-column-count:3;     /* 指定列的数目 */
+	-moz-column-count:3;        /* 指定列的数目 */
+	column-count:3;             /* 指定列的数目 */
+}
+h1 {
+	-webkit-column-span:all;     /* 设置横跨所有列显示  */
+	-moz-column-span:all;        /* 设置横跨所有列显示  */
+	column-span:all;             /* 设置横跨所有列显示  */
+	font-size:24px;
+	margin:0;
+	padding:5px 10px;
+	background-color:#e4e4e4;
+	text-align:center;
+}
+h2 {
+	font-size:14px;
+	text-align:center;
+}
+p {
+	text-indent:2em;
+	font-size:12px;
+	line-height:20px;
+}
+.first:first-letter {
+	font-size:24px;             /* 突出第一个字  */
+	font-weight:bold;
+}
+.b {
+	font-weight:bold;
+}
+</style>
+</head>
+<body>
+<h1>CSS3的发展轨迹</h1>
+<h2>作者：佚名</h2>
+<p class="first">样式表自从CSS1的版本之后，又在1998年5月发布了CSS2版本，样式表得到了更多的充实。　</p>
+<p>CSS2.0提供给我们了一个机制，让程序员开发时可以不考虑显示和界面就可以制作表单和界面，显示问题可由美工或是程序员后期再来编写相应的CSS2.0样式来解决。不过由于CSS2.0目前尚未见过很好的编辑软件，所以无法做到所见即所得，编写起来不易。</p>
+<p>CSS3语言开发是朝着模块化发展的。以前的规范作为一个模块实在是太庞大而且比较复杂，所以，把它分解为一些小的模块，更多新的模块也被加入进来。</p>
+<div><img src="images/pic.png" width="187" height="127" /></div>
+<p class="b">CSS3选择器</p>
+<p>在CSS2的基础上，CSS3又对CSS选择器进一步的扩充和增强.CSS3中的选择器，有着灵活的选择过滤机制，可以更简单的实现更强大的功能。</p>
+<p class="b">时间表</p>
+<p>几个模块现已完成，包括的SVG（可扩展矢量图形），媒介资源类型（MediaQueries）和命名，而其他的模块开发工作则仍在进行中。如果要给出一个预定的日期的话，非常困难，不管怎样，web浏览器将全面支持CSS3的各种新特点，一些新的探索已经开始了。针对不同浏览器，新的功能是逐渐应用的，仍然需要1-2年的时间，每一个新的模块才有可能被广泛应用。</p>
+<p class="b">CSS3将给我带来哪些新的影响</p>
+<p>首先，我们希望，这是个正确的方式，CSS3将完全向后兼容，所以没有必要修改现在的设计来让它们继续运作。网络浏览器也还将继续支持CSS2。对我们来说，CSS3主要的影响是将可以使用新的可用的选择器和属性，这些会允许你实现新的设计效果（譬如动态和渐变），而且可以很简单的设计出现在的设计效果（比如说使用分栏）。</p>
+</body>
+</html>

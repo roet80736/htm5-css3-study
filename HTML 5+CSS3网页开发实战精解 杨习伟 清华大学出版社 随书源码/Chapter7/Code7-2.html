@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>北国风光</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="text/css" media="screen, projection">
+body {
+	line-height:1;
+	color:#333;
+}
+ol, ul, h1 {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+a {
+	color: #933;
+	text-decoration: none;
+}
+a:hover {
+	color: #DF3030;
+}
+nav h1 {
+	text-align:center;
+}
+nav h1 img {
+	width:90%;
+}
+nav ul {
+	border-top: 1px solid #999;
+}
+nav li {
+	text-align: center;
+	border-bottom:1px solid #ccc;
+	line-height:60px;
+}
+nav li a {
+	display:block;
+}
+nav li a:hover {
+	background-color:#e4e4e4;
+}
+section {
+	font-size:14px;
+	font-family:"宋体";
+}
+section h2 {
+	font-size:18px;
+	text-align:center;
+	font-family:"黑体";
+	font-weight:lighter;
+}
+section span {
+	padding:0 10px;
+	background-color:#FFF;
+}
+
+section li {
+	text-align:center;
+}
+section li img {
+	width:98%;
+	border-radius:5px;
+}
+section article {
+	border-top: 1px solid #999;
+	margin-top:20px;
+	padding-bottom:20px;
+}
+.clear {
+	clear:both;
+	line-height:5px;
+}
+footer {
+	clear:both;border-top: 1px solid #999;
+	font-size: 12px;
+	text-align: center;
+	padding: 10px 0;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666;
+}
+ @media (max-width: 400px) {
+ nav li {
+ float:left;
+ width:32%;
+ margin-left:1%;
+}
+section {
+ clear:both;
+ padding:20px 0;
+}
+section li {
+ margin:10px 2px;
+}
+ section li span {
+ display:block;
+ text-align:center;
+ font-size:12px;
+}
+}
+ @media (min-width:400px) and (max-width: 600px) {
+ nav li {
+ float:left;
+ width:32%;
+ margin-left:1%;
+}
+ section {
+ clear:both;
+padding:20px 0;
+}
+section li {
+ float:left;
+ margin:10px 2px;
+ width:48%;
+}
+ section li span {
+ display:block;
+ text-align:center;
+ font-size:12px;
+}
+}
+@media (min-width:600px) and (max-width:900px) {
+nav {
+ float:left;
+ width:35%;
+}
+ section {
+ float:left;
+ width: 65%;
+ padding:20px 0;
+}
+section li {
+ float:left;
+ margin:10px 2px;
+ width:48%;
+}
+ section li span {
+ display:block;
+ text-align:center;
+ font-size:12px;
+}
+}
+@media (min-width: 900px) {
+ nav h1 {
+ float:left;
+ width:35%;
+ height:200px;
+}
+ nav ul {
+ float:left;
+ width: 65%;
+}
+ nav li {
+ float:left;
+ width:32%;
+ margin-left:1%;
+}
+section {
+ float:left;
+ width: 65%;
+ padding:20px 0;
+}
+section li {
+ float:left;
+ margin:10px 2px;
+ width:32%;
+}
+ section li span {
+ display:block;
+ text-align:center;
+ font-size:12px;
+}
+}
+</style>
+</head>
+<body>
+<!-- 包含logo的导航栏 -->
+<nav>
+  <!-- logo -->
+  <h1 id="logo"><a href="#"><img src="images/logo.jpg" alt="北国风光"></a></h1>
+  <!-- 导航栏 -->
+  <ul>
+    <li><a href="#">名词来历</a></li>
+    <li><a href="#">北国雾凇</a></li>
+    <li><a href="#">风光图片集</a></li>
+  </ul>
+</nav>
+<section>
+  <!-- 图片列表 -->
+  <article>
+    <h2 style="margin-top:-15px;"><span>风光图片集</span></h2>
+    <ol>
+      <li> <a href="#"> <img src="images/Scene1.jpg" alt=""> <span>图片1</span> </a> </li>
+      <li> <a href="#"> <img src="images/Scene2.jpg" alt=""> <span>图片2</span> </a> </li>
+      <li> <a href="#"> <img src="images/Scene3.jpg" alt=""> <span>图片3</span> </a> </li>
+      <li> <a href="#"> <img src="images/Scene4.jpg" alt=""> <span>图片4</span> </a> </li>
+      <li> <a href="#"> <img src="images/Scene5.jpg" alt=""> <span>图片5</span> </a> </li>
+      <li> <a href="#"> <img src="images/Scene6.jpg" alt=""> <span>图片6</span> </a> </li>
+    </ol>
+    <div class="clear"></div>
+  </article>
+  <!-- 页面底部 -->
+  <footer> 北国风光&copy; 2011</footer>
+</section>
+</body>
+</html>

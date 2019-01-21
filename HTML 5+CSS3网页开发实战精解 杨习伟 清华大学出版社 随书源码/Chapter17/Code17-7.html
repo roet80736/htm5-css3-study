@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>HTML5 Geolocation</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+var geo; // 全局变量
+// 获取Geolocation对象
+function getGeolocation(){
+	try{
+		if(!!navigator.geolocation) return navigator.geolocation;
+		else return undefined;
+	}catch(e){
+		return undefined;		
+	}
+}
+var options = {
+	enableHighAccuracy : false,
+	timeout : 5000,
+	maximumAge : 600000
+};
+
+function geo_success(position){
+	var temp = "<table border='0' cellpadding='0' cellspacing='1'>";
+	temp += "<tr><td>纬度</td><td>" + position.coords.latitude + "</td></tr>";
+	temp += "<tr><td>经度</td><td>" + position.coords.longitude + "</td></tr>";
+	temp += "<tr><td>经纬精度</td><td>" + position.coords.accuracy + "</td></tr>";
+	temp += "<tr><td>海拔</td><td>" + position.coords.altitude + "</td></tr>";
+	temp += "<tr><td>海拔精度</td><td>" + position.coords.altitudeAccuracy + "</td></tr>";
+	temp += "<tr><td>前进方向</td><td>" + position.coords.heading + "</td></tr>";
+	temp += "<tr><td>移动速度</td><td>" + position.coords.speed + "</td></tr>";
+	temp += "</table>";
+	document.getElementById("resultText").innerHTML = temp;
+	
+	// 开始调用地图API
+	var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);   
+	var myOptions = {
+		zoom: 15, center: latlng,
+		mapTypeControl: false,
+		navigationControlOptions: {
+			style: google.maps.NavigationControlStyle.SMALL
+		},
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	var map = new google.maps.Map(document.getElementById("resultMap"), myOptions);
+	var marker = new google.maps.Marker({ position: latlng, map: map, title:"我在这里!" });
+}
+function geo_error(error){
+	switch(error.code){
+		case error.PERMISSION_DENIED:
+			document.getElementById("message").textContent = "用户阻止了该页面获取地理位置。";
+			break;
+		case error.POSITION_UNAVAILABLE:
+			document.getElementById("message").textContent = "浏览器没能获取到地理位置。";
+			confirm("是否尝试再次请求？")?geo.getCurrentPosition(geo_success,geo_error,options):"";
+			break;
+		case error.TIMEOUT:
+			document.getElementById("message").textContent = "获取地理位置超时。";
+			confirm("是否尝试再次请求？")?geo.getCurrentPosition(geo_success,geo_error,options):"";
+			break;
+		default:
+			document.getElementById("message").textContent = "获取地理位置时，产生了一个未知的错误。";
+			break;
+	}
+}
+// onload
+window.onload = function(){
+	if((geo=getGeolocation())){
+		document.getElementById("message").textContent = "正在使用HTML5地理定位...";
+		geo.getCurrentPosition(geo_success,geo_error,options);
+	} else {
+		document.getElementById("message").textContent = "不支持HTML5地理定位！";
+	}
+}
+</script>
+</head>
+<body>
+<div class="content">
+  <h1> HTML5 Geolocation </h1>
+  <p class="message" id="message">HTML5 Geolocation</p>
+  <div id="resultText">  </div>
+  <div id="resultMap"> 地图 </div>
+  <div style="clear:both;"></div>
+</div>
+</body>
+</html>

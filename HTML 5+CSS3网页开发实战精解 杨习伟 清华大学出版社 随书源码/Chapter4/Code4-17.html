@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>使用外轮廓渲染登录表单</title>
+<style type="text/css">
+#login {
+	margin:20px auto;
+	width:300px;
+	border:1px solid #f90;
+	padding:20px;
+	line-height:22px;
+	outline:2px solid #ccc;
+	background-color:#ffff99;
+	font-size:18px;
+}
+#login h1 {
+	font-size:18px;
+	margin:0;
+	padding:5px;
+	border-bottom:1px solid #fc6;
+	margin-bottom:10px;
+}
+#login label {
+	display:block;
+	width:100px;
+	float:left;
+	text-align:right;
+	clear:left;
+	margin-top:15px;
+}
+#login input {
+	float:left;
+	width:150px;
+	margin-top:15px;
+	line-height:22px;
+	height:22px;
+}
+#login input:focus {
+	outline:4px solid #fc6;
+}
+#login div {
+	clear:both;
+	padding-left:100px;
+	padding-top:20px;
+	font-size:12px;
+}
+#login div button {
+	width:80px;
+	font-size:14px;
+	line-height:22px;
+	background-image: -moz-linear-gradient(top, #ffffcc, #ffcc99);           /* 渐变 */
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffcc), to(#ffcc99));  /* 渐变 */
+	border:1px solid #f90;
+}
+#login div button:hover {
+	outline:4px solid #fc6;
+}
+</style>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <div id="login">
+    <h1>用户登录</h1>
+    <label for="UserName">用户名：</label>
+    <input type="text" name="UserName" id="UserName">
+    <label for="Password">密码：</label>
+    <input type="password" name="Password" id="Password">
+    <div>
+      <button>登录</button>
+      <a href="#">忘记密码？</a> </div>
+  </div>
+</form>
+</body>
+</html>

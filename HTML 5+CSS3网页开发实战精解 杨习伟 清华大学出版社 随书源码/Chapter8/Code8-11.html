@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>绘制贝塞尔曲线</title>
+<style type="text/css">
+canvas {
+	border:1px solid #000;
+}
+</style>
+<script type="text/javascript">
+function Draw(){
+	var canvas=document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	// 先绘制灰色的辅助线段，宽2像素
+	context.beginPath();							// 添加第一个子路径
+	context.moveTo(100,180);						// 确定当前位置，即绘图起始的位置
+	context.lineTo(110,80);							// 直线连接控制点
+	context.moveTo(260,100);						// 移动当前位置
+	context.lineTo(300,200);						// 直线连接终点
+	context.strokeStyle="rgba(0,0,0,0.4)";			// 线框颜色为黑色，透明度为0.4
+	context.lineWidth=3;
+	context.stroke();
+	// 再绘制一曲线，宽3像素，线条颜色为橘黄色
+	context.beginPath();							// 添加第二个子路径
+	context.moveTo(100, 180); 						// 确定当前位置，与第一个子路径一致
+	context.bezierCurveTo(110, 80, 260, 100, 300, 200);	// 确定曲线轮廓
+	context.lineWidth = 3;
+	context.strokeStyle="rgba(255,135,0,1)";		// 线框颜色为橘黄色
+	context.stroke();
+}
+window.addEventListener("load",Draw,true);
+</script>
+</head>
+<body style="overflow:hidden">
+<canvas id="canvas" width="400" height="400">你的浏览器不支持该功能！</canvas>
+</body>
+</html>

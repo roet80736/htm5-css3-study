@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>信纸效果</title>
+<style type="text/css">
+div {
+	padding:25px;
+	border:10px solid rgba(204, 204, 51, 0.8);
+	height:300px;
+	width:220px;
+	font-size:12px;
+	line-height:22px;	
+	background-image:url(../images/line.png),       /* 第一个背景：横线 */
+				url(../images/left-top.png),       /* 第二个背景：左上角背景 */
+				url(../images/right-top.png),      /* 第三个背景：右上角背景 */
+				url(../images/left-bottom.png),    /* 第四个背景：左下角背景 */
+				url(../images/right-bottom.png),   /* 第五个背景：右下角背景 */
+				url(../images/wenli.jpg);          /* 第六个背景：纹理背景 */
+
+	background-repeat:repeat,                     /* 第一个背景：平铺 */
+				no-repeat,                     /* 第二个背景：不平铺*/
+				no-repeat,                     /* 第三个背景：不平铺*/
+				no-repeat,                     /* 第四个背景：不平铺*/
+				no-repeat,                     /* 第五个背景：不平铺*/
+				repeat;                        /* 第六个背景：平铺*/
+
+	background-position:left top,                   /* 第一个背景：左上*/
+				left top,                        /* 第二个背景：左上*/
+				right top,                       /* 第三个背景：右上*/
+				left bottom,                     /* 第四个背景：左下*/
+				right bottom,                    /* 第五个背景：右下*/
+				left top;                         /* 第六个背景：左上*/
+
+	background-size:40px 44px,                     /* 第一个背景：固定尺寸*/
+				20%,                           /* 第二个背景：宽为父元素20%的大小，高自动*/
+				20%,                           /* 第三个背景：宽为父元素20%的大小，高自动*/
+				20%,                           /* 第四个背景：宽为父元素20%的大小，高自动*/
+				20%,                           /* 第五个背景：宽为父元素20%的大小，高自动*/
+				20%;                           /* 第六个背景：宽为父元素20%的大小，高自动*/
+
+	background-origin:content-box,                  /* 第一个背景：原点为内容区域开始 */
+				border-box,                     /* 第二个背景：原点为边框区域开始 */
+				border-box,                     /* 第三个背景：原点为边框区域开始 */
+				border-box,                     /* 第四个背景：原点为边框区域开始 */
+				border-box,                     /* 第五个背景：原点为边框区域开始 */
+				padding-box;                    /* 第六个背景：原点为内边距区域开始 */
+
+	background-clip:content-box,                   /* 第一个背景：背景仅在内容区域显示 */
+				border-box,                     /* 第二个背景：背景从边框区域开始显示 */
+				border-box,                     /* 第三个背景：背景从边框区域开始显示*/
+				border-box,                     /* 第四个背景：背景从边框区域开始显示*/
+				border-box,                     /* 第五个背景：背景从边框区域开始显示*/
+				padding-box;                    /* 第六个背景：背景从内边距区域开始显示*/
+}
+div h1 {
+	margin:0;
+	padding:0;
+	font-size:14px;
+}
+div p {
+	margin:0;
+	padding:0;
+	text-indent:2em;
+}
+</style>
+<body>
+<div>
+  <h1>致加西亚的一封信</h1>
+  <p>在所有与古巴有关的事情中，有一个人常常令我无法忘怀。</p>
+  <p>美西战争爆发以后，美国必须马上与西班牙反抗军首领加西亚将军取得联系。加西亚将军隐藏在古巴辽阔的崇山峻岭中——没有人知道确切的地点，因而无法送信给他。但是，美国总统必须尽快地与他建立合作关系。怎么办呢？</p>
+  <p>有人对总统推荐说：&ldquo;有一个名叫罗文的人，如果有人能找到加西亚将军，那个人一定就是他。&rdquo;　</p>
+  <p>......</p>
+</div>
+</body>
+</html>

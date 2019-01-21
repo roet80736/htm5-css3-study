@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>可以调整大小的div元素</title>
+<style type="text/css">
+div {
+	width:100px;
+	height:80px;
+	max-width:600px;        /* 设置最大宽度限制 */
+	max-height:400px;       /* 设置最大高度限制 */
+	padding:10px;
+	border:1px solid #f90;
+	resize:both;             /* 设置元素的宽度和高度均可调整 */
+	overflow:auto;           /* 设置溢出属性值为auto */
+}
+</style>
+</head>
+<body>
+<div> 如果你在使用Firefox或Chrome，那么你肯定注意到了textarea标签元素的右下角默认有个小的手柄，它可以让你调整它们的大小。
+CSS3新增的resize属性，可以把其他元素也应用同样的效果。  resize属性定义一个元素是否允许用户调整大小。</div>
+</body>
+</html>

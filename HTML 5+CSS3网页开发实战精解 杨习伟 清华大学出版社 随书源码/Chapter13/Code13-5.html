@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html manifest="Code13-1/cache.manifest">
+<head>
+<title>test</title>
+<meta charset="utf-8">
+<script type="text/javascript">
+window.applicationCache.onchecking=function(){
+	console.log("检查应用缓存更新");
+}
+window.applicationCache.onnoupdate=function(){
+	console.log("没有需要更新的应用缓存");
+}
+window.applicationCache.onupdateready=function(){
+	console.log("应用缓存更新就绪");
+}
+window.applicationCache.onobsolete=function(){
+	console.log("应用缓存过时/过期");
+}
+window.applicationCache.oncached=function(){
+	console.log("应用缓下载存完毕");
+}
+window.applicationCache.onerror=function(){
+	console.log("应用缓存出现错误");
+}
+window.applicationCache.onprogress=function(){
+	console.log("应用缓存下载中");
+}
+window.applicationCache.ondownloading=function(){
+	console.log("应用缓存准备下载");
+}
+</script>
+</head>
+<body>
+test
+</body>
+</html>

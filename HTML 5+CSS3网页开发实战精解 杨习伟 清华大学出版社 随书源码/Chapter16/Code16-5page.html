@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>共享线程</title>
+</head>
+<body>
+<input type="text" value="" onchange="worker.port.postMessage(this.value);return false;" />
+<pre id="log">日志:</pre>
+</body>
+</html>
+<script type="text/javascript">
+	if(typeof SharedWorker === "undefined"){
+		alert("浏览器不支持共享线程");
+	}
+	var log = document.getElementById('log');
+	
+	var worker = new SharedWorker("Code16-5sharedWorker.js");	
+	worker.port.addEventListener('message', function(e) {  // 注意: 这里使用port属性
+		log.textContent += '\n' + e.data;
+	}, false);
+	worker.port.start(); // 注意: 当使用addEventListener时，需要启动端口
+	worker.port.postMessage("初始化"); // 发送消息
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="uft-8" />
+<title>主体页面</title>
+<script type="text/javascript">
+/* 发送消息到框架页面 */
+function sendToFrame(){
+	var win = document.getElementsByTagName("iframe")[0].contentWindow;  /* 获取iframe的窗体对象 */
+	var val = document.getElementById("msg").value;
+	win.postMessage(val,"*");                /* 使用iframe窗体对象发送消息给框架页面 */
+}
+var originWhite = "http://yang:8081";   /* 指定合法的消息来源 */
+/* 消息事件回调函数 */
+function messageMainHandler(e){
+	
+	if(e.origin==originWhite){         /* 验证消息来源 */
+		document.getElementById("result").textContent = e.data;
+	}else{
+		console.log("非法的消息来源！");
+	}
+}
+/* 页面加载处理 */
+window.onload=function(){
+	/* 检测浏览器支持情况 */
+	if(typeof window.postMessage === "undefined"){
+		document.getElementById("button").onclick=function(){
+			return false;
+		}
+		console.log("您的浏览器不支持postMesage！");		
+	}else{
+		window.addEventListener("message", messageMainHandler, true);  /* 添加监听事件message */
+	}
+}
+</script>
+<style type="text/css">
+body{
+	background-color:#fff2de;
+}
+h1{
+	font-size:18px;
+}
+span{
+	color:blue;
+}
+iframe{
+	border:1px solid #CCCCCC;	
+}
+</style>
+</head>
+<body>
+<h1>计算本页面输入的数字与子框架页输入的数字的乘积</h1>
+<p>
+	<input type="text" id="msg" name="msg" value="" placeholder="请输入数字" />
+	<input type="button" id="button" name="button" value="计算" onClick="sendToFrame()" />
+</p>
+<p>计算结果：<span id="result"></span></p>
+<iframe width="100%" src="http://yang:8081/Chapter14/frame.html" height="140"></iframe>
+</body>
+</html>

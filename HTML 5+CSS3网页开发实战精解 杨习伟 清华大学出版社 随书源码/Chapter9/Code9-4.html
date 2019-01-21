@@ -1,0 +1,187 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义播放工具条</title>
+<script type="text/javascript">
+var videoEl=null;
+window.addEventListener("load", function(){
+	videoEl=document.getElementById("myPlayer")
+});
+</script>
+<script type="text/javascript">
+/* 播放/暂停 */
+function Play(e){
+	if(videoEl.paused){
+		videoEl.play();
+		document.getElementById("play").innerHTML=";"
+	}else{
+		videoEl.pause();
+		document.getElementById("play").innerHTML="4"
+	}
+}
+/* 后退 */
+function Prev(){
+	videoEl.currentTime-=60;
+}
+/* 前进 */
+function Next(){
+	videoEl.currentTime+=60;
+}
+</script>
+<script type="text/javascript">
+/* 慢进 */
+function Slow(){
+	if(videoEl.playbackRate<=1)
+		videoEl.playbackRate-=0.2;
+	else{
+		videoEl.playbackRate-=1;
+	}
+	document.getElementById("rate").innerHTML=fps2fps(videoEl.playbackRate);
+}
+/* 快进 */
+function Fast(){
+	if(videoEl.playbackRate<1)
+		videoEl.playbackRate+=0.2;
+	else{
+		videoEl.playbackRate+=1;
+	}
+	document.getElementById("rate").innerHTML=fps2fps(videoEl.playbackRate);
+}
+/* 速率数值处理 */
+function fps2fps(fps){
+	if(fps<1)
+ 		return fps.toFixed(1);
+ 	else
+ 		return fps 
+}
+</script>
+<script type="text/javascript">
+/* 静音 */
+function Muted(e){
+	if(videoEl.muted){
+		videoEl.muted=false;          /* 消除静音 */
+		e.innerHTML="X";              /* 显示声音的文字图标 */
+		document.getElementById("volume").value=videoEl.volume; /* 还原音量 */
+	}else{
+		videoEl.muted=true;           /* 静音 */
+		e.innerHTML="x";              /* 显示静音的文字图标 */
+		document.getElementById("volume").value=0;  /* 音量修改为0 */
+	}
+}
+/* 调整音量 */
+function Volume(e){
+	videoEl.volume=e.value;  /* 修改音量的值 */
+}
+</script>
+<script type="text/javascript">
+/* 进度信息：控制进度条，并显示进度时间 */
+function Progresss(){
+	var el=document.getElementById("progresss");
+	el.style.width = (videoEl.currentTime/videoEl.duration)*720 +"px"
+	document.getElementById("info").innerHTML=s2time(videoEl.currentTime)+"/"+s2time(videoEl.duration);
+}
+/* 把秒处理为时间格式 */
+function s2time(s){
+	var m=parseFloat(s/60).toFixed(0);
+	s=parseFloat(s%60).toFixed(0);
+	return (m<10?"0"+m:m) +":"+ (s<10?"0"+s:s);
+}
+/* 网页加载完毕后，把进度处理函数添加至视频对象的timeupdate事件中 */
+window.addEventListener("load", function(){videoEl.addEventListener("timeupdate",Progresss)});
+/* 给window.onload事件添加进度处理函数 */
+window.addEventListener("load",Progresss);
+</script>
+<style type="text/css">
+#controls {
+	width:720px;
+	margin-top:-3px;
+	height:60px;
+	background-image: -moz-linear-gradient(top, #ccc, #999);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+}
+#controls #bar {
+	width:720px;
+	height:5px;
+	background-color:#069;
+	padding:1px 0;
+	margin-bottom:5px;
+	cursor:pointer;
+}
+#controls #bar #progresss {
+	width:420px;
+	height:5px;
+	background-color:#F90;
+	border-radius:2px;
+}
+#controls .but {
+	font-family:Webdings;
+	background: -moz-linear-gradient(top, #666, #333);
+	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#333));
+	cursor:pointer;
+	width:20px;
+	line-height:20px;
+	text-align:center;
+	color:#CCC;
+	border-radius:15px;
+	float:left;
+}
+#controls .but:hover {
+	background: -moz-linear-gradient(top, #06c, #069);
+	background: -webkit-gradient(linear, left top, left bottom, from(#06c), to(#069));
+}
+#controls #slow, #controls #fast, #controls #prev, #controls #next {
+	padding:5px;
+	margin:5px;
+	font-size:16px;
+}
+#controls #play {
+	padding:10px;
+	font-size:24px;
+	border-radius:20px;
+}
+#controls #muted {
+	font-family:Webdings;
+	font-size:30px;
+	width:25px;
+	float:left;
+	margin:5px 0;
+	padding:5px 0;
+	line-height:20px;
+	color:#333;
+	cursor:pointer;
+}
+#controls .volume {
+	float:left;
+	margin:5px 0;
+	padding:5px 0;
+}
+#controls .volume input {
+	cursor:pointer;
+}
+#controls .info {
+	float:right;
+	padding:10px;
+	color:#666;
+}
+</style>
+</head>
+<body>
+<video id="myPlayer" src="resources/video.mp4" onclick="Play()">你的浏览器不支持video元素</video>
+<div id="controls"><!---->
+  <div id="bar">
+    <div id="progresss"></div>
+  </div>
+  <div id="slow" class="but" onclick="Slow()">7</div>
+  <div id="play" class="but" onclick="Play(this)">4;</div>
+  <div id="fast" class="but" onclick="Fast()">8</div>
+  <div id="prev" class="but" onclick="Prev()">9</div>
+  <div id="next" class="but" onclick="Next()">:</div>
+  <div id="muted" onclick="Muted(this)">X</div>
+  <div class="volume">
+    <input id="volume" type="range" min="0" max="1" step="0.1" onchange="Volume(this)" />
+  </div>
+  <div class="info"><span id="rate">1</span>fps <span id="info"></span></div>
+</div>
+</body>
+</html>

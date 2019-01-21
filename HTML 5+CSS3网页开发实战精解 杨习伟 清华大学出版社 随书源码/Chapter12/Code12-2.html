@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Web Storage API</title>
+<script type="text/javascript">
+function Test(){
+	// 在localStorage存储localKey的值为"localValue"
+	window.localStorage.setItem("localKey","localValue");
+	// 获取存储在localStorage中的localKey的值，并输出到控制台
+	console.log(window.localStorage.getItem("localKey"));
+	// 在sessionStorage存储sessionKey的值为"sessionValue"
+	window.sessionStorage.setItem("sessionKey","sessionValue");
+	// 获取存储在sessionStorage中的sessionKey的值，并输出到控制台
+	console.log(window.sessionStorage.getItem("sessionKey"));
+	console.log(window.sessionStorage.length);
+}
+window.addEventListener("load",Test,false);
+</script>
+</head>
+<body>
+</body>
+</html>

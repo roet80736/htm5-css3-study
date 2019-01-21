@@ -1,0 +1,24 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Flash视频嵌入示例</title>
+</head>
+<body>
+<object id="UNIQUEID" height="520" width="528" codebase="http://download.macromedia.com/"
+		classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" >
+    <param value="../player/myVideoPlayer.swf" name="movie" />
+    <param value="true" name="allowFullScreen" />
+    <param value="all" name="allowNetworking" />
+    <param value="always" name="allowScriptAccess" />
+    <param value="opaque" name="wmode" />
+    <param value="myVideoFile.flv" name="FlashVars" />
+    <embed height="520" width="528" src="../player/mds_player.swf"
+           id="UNIQUEID" wmode="opaque" allowscriptaccess="always" allownetworking="all"
+		   allowfullscreen="true" swf="../player/myVideoPlayer.swf"
+           flashvars="myVideoFile.flv"
+           pluginspage="http://www.macromedia.com/go/getflashplayer"
+		   type="application/x-shockwave-flash" quality="high" />
+</object>
+</body>
+</html>

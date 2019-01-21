@@ -1,0 +1,46 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>变化的页面元素</title>
+<style type="text/css">
+div {
+	position:absolute;
+	width:100px;
+	height:100px;
+	top:50px;
+	left:100px;
+	background-color:#F90;
+	/* 绑定两个关键帧动画：mymove,myrotate */
+	-moz-animation-name:mymove,myrotate;
+	-webkit-animation-name:mymove,myrotate;
+	/* 无限循环 */
+	-moz-animation-iteration-count:infinite;
+	-webkit-animation-iteration-count:infinite;
+	/* 线性变化 */
+	-moz-animation-timing-function:linear;
+	-webkit-animation-timing-function:linear;
+	/* 设置两个关键帧播放时间：4s,3s */
+	-moz-animation-duration:4s,3s;
+	-webkit-animation-duration:4s,3s;
+}
+/* 创建关键帧动画mymove */
+ @-moz-keyframes mymove {
+50% {top:50px; left:100px;background-color:#00F;}
+}
+ @-webkit-keyframes mymove {
+50% {top:150px; left:200px;background-color:#00F;}
+}
+/* 创建关键帧动画myrotate */
+ @-moz-keyframes myrotate {
+100% {-moz-transform:rotate(360deg);}
+}
+ @-webkit-keyframes myrotate {
+100% {-webkit-transform:rotate(360deg);}
+}
+</style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

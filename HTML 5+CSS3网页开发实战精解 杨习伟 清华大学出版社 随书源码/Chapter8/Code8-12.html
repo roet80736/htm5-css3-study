@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>使用三种方法插入图像</title>
+<style type="text/css">
+canvas{
+	border:1px solid #000;
+}
+</style>
+<script type="text/javascript">
+function Draw(){
+	var canvas=document.getElementById("canvas");		// 获取canvas对象
+	var context = canvas.getContext("2d");				// 获取2d上下文绘图对象
+	var newImg = new Image();						// 使用Image()构造函数创建图像对象
+	newImg.src= "../images/Chaplin.jpg";					// 指定图像的文件地址
+	newImg.onload=function(){
+		context.drawImage(newImg,0,0); 				// 从左上角开始绘制图像
+		context.drawImage(newImg,250,100,150,200); 	// 从指定坐标开始绘制图像，并设置图像宽和高
+		context.drawImage(newImg,90,80,100,100,0,0,120,120); 	// 裁剪一部分图像放在左上角，并稍微放大
+	}
+}
+window.addEventListener("load",Draw,true);
+</script>
+</head>
+<body style="overflow:hidden">
+<canvas id="canvas" width="400" height="300">你的浏览器不支持该功能！</canvas>
+</body>
+</html>

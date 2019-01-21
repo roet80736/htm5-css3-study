@@ -1,0 +1,60 @@
+<!DOCTYPEHTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设计渐变的按钮</title>
+<style type="text/css">
+div{
+	margin-top:10px;
+}
+.button {
+	display:inline;
+	padding:5px 20px;
+	font-size:12px;
+	font-weight:lighter;
+	font-family:Arial, Helvetica, sans-serif;
+	border:none;
+	color:#333;
+	letter-spacing:1px;
+	text-decoration:none;
+	/* 设置阴影效果 */
+	-webkit-box-shadow:2px 2px 2px #333;
+	-moz-box-shadow:1px 1px 1px #ccc;
+	box-shadow:1px 1px 2px #333;
+	/* 基于Webkit内核的实现 */
+	background:-webkit-gradient(linear, left top, left bottom, from(#ffcc33), to(#f90));
+	/* 基于Gecko内核的实现 */
+	background:-moz-linear-gradient(#ffcc33, #f90);
+}
+.button:hover {
+	/* 基于Webkit内核的实现 */
+	background:-webkit-gradient(linear, left top, left bottom, from(#ff9933), to(#ff3300));
+	/* 基于Gecko内核的实现 */
+	background:-moz-linear-gradient(#ff9933, #ff3300);
+}
+.radius5 {
+	/* 圆角半径5px */
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+.radius15 {
+	/* 圆角半径15px */
+	-webkit-border-radius:15px;
+	-moz-border-radius:15px;
+	border-radius:15px;
+}
+</style>
+</head>
+<body>
+<div> <span class="button">Span</span>
+  <input type="button" value="Buttom" class="button" />
+  <a href="#" class="button">Link</a> </div>
+<div> <span class="button radius5">Span</span>
+  <input type="button" value="Buttom" class="button radius5" />
+  <a href="#" class="button radius5">Link</a> </div>
+<div> <span class="button radius15">Span</span>
+  <input type="button" value="Buttom" class="button radius15" />
+  <a href="#" class="button radius15">Link</a> </div>
+</body>
+</html>

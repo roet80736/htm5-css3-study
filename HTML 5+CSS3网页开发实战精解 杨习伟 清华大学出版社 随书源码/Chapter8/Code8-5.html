@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>连续绘制的两个圆形</title>
+<style type="text/css">
+canvas {
+	border:1px solid #000;
+}
+</style>
+<script type="text/javascript">
+function Draw(){
+	var canvas=document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+
+	// 绘制第一个圆形
+	context.beginPath();
+	context.arc(150,100,50,0,Math.PI*2,true);	
+	context.fillStyle="rgba(255,135,0,0.4)";
+	context.fill();	
+	// 绘制第二一个圆形
+	context.beginPath();
+	context.arc(170,120,50,0,Math.PI*2,true);
+	context.fillStyle="rgba(255,135,0,0.4)";
+	context.fill();
+}
+window.addEventListener("load",Draw,true);
+</script>
+</head>
+<body style="overflow:hidden">
+<canvas id="canvas" width="400" height="300">你的浏览器不支持该功能！</canvas>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>canvas动画--碰碰球</title>
+<style type="text/css">
+canvas {
+	border-top:2px solid #f00;
+	border-right:2px solid #f90;
+	border-left:2px solid blue;
+	border-bottom:2px solid green;
+}
+</style>
+<script type="text/javascript">
+// 定义一个动画对象
+var animation={};
+// 为该对象添加属性
+// 添加定时器
+animation.interval=null;
+// 移动变换x方向的偏移量
+animation.x=100;
+// 移动变换y方向的偏移量
+animation.y=50;
+// x方向的移动步长
+animation.xstep=2;
+// y方向的移动步长
+animation.ystep=2;
+// 圆形半径
+animation.radius=15;
+// 填充圆形的颜色
+animation.color="red";
+// 动画间隔时间:毫秒
+animation.delay=10;
+// 暂停动画
+animation.pause=function(){
+	clearInterval(this.interval);
+};
+// 更新偏移量x和y
+animation.update=function(width,height){
+	// 改变x坐标
+	this.x+=this.xstep;
+	this.y+=this.ystep;
+	// 左边缘检测
+	if(this.x<this.radius){
+		this.x=this.radius;
+		this.xstep=-this.xstep;
+		this.color="blue";
+	}
+	// 右边缘检测
+	if((this.x+this.radius)>width){
+		this.x=width-this.radius;
+		this.xstep=-this.xstep;
+		this.color="#f90";
+	}
+	// 上边缘检测
+	if(this.y<this.radius){
+		this.y=this.radius;
+		this.ystep=-this.ystep;
+		this.color="red";
+	}
+	// 下边缘检测
+	if((this.y+this.radius)>height){
+		this.y=height-this.radius;
+		this.ystep=-this.ystep;
+		this.color="green";
+	}
+};
+// 绘制图形
+animation.draw=function(){
+	var canvas=document.getElementById("canvas");
+	var width=canvas.getAttribute("width");
+	var height=canvas.getAttribute("height");
+	var context=canvas.getContext("2d");	
+	// 保存状态
+	context.save();
+	// 清空画布
+	context.clearRect(0,0,width,height);
+	//canvas.setAttribute("width",width);
+	//canvas.setAttribute("height",height);
+	
+	// 更新坐标
+	this.update(width,height);
+	// 填充颜色
+	context.fillStyle=this.color;
+	// 移动坐标
+	context.translate(this.x,this.y);
+	// 重新绘制
+	context.beginPath();
+	context.arc(0,0,this.radius,0,Math.PI*2,true);
+	context.fill();
+	// 恢复状态
+	context.restore();
+};
+// 开始动画
+animation.start=function(){
+ 	// 停止动画
+	this.pause();
+	// 开始动画
+	this.interval = setInterval("animation.draw()",this.delay);
+};
+</script>
+</head>
+<body>
+<div align="center">
+<canvas id="canvas" width="400" height="260">你的浏览器不支持该功能！</canvas>
+<br />
+<input onclick="animation.start()" value="开始" type="button">
+<input onclick="animation.pause()" value="暂停" type="button"></div>
+</body>
+</html>

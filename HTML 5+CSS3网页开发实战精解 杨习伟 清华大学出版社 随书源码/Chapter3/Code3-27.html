@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>使用新技术设计的网页</title>
+<style type="text/css">
+#area {
+	width:480px;
+	padding:10px;
+	margin:0 auto;
+	-webkit-border-image:url(../images/borderimage2.png) 15/15px;
+	-moz-border-image:url(../images/borderimage2.png) 15/15px;
+	-o-border-image:url(../images/borderimage2.png) 15/15px;
+	border-image:url(../images/borderimage2.png) 15/15px;
+}
+</style>
+<style type="text/css">
+#nav {
+	list-style:none;
+	margin:0;
+	padding:0 60px;
+	font-size:12px;
+	height:20px;
+	margin-bottom:-2px;
+}
+#nav li {
+	height:20px;
+	line-height:20px;
+	padding:0 10px;
+	margin-left:2px;
+	float:left;
+	border-radius:3px 3px 0 0;
+	cursor:pointer;
+}
+#nav .cur, #nav li:hover {
+	background-color:#ff3333;
+	color:#FFF;
+}
+</style>
+<style type="text/css">
+#search {
+	text-align:center;
+}
+#search input {
+	border:1px solid #ff3333;
+}
+#search input[type=text] {
+	border-radius:10px 0 0 10px;
+	border-right-width:0;
+	padding-left:10px;
+	width:380px;
+}
+#search input[type=submit] {
+	border-radius:0 10px 10px 0;
+	margin-left:-10px;
+	background-image: -moz-linear-gradient(top, #ffffcc, #ffcc99);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffcc), to(#ffcc99));
+}
+</style>
+<style type="text/css">
+#box {
+	padding-top:10px;
+}
+#box .pics {
+	text-align:center;
+}
+#box .pics img {
+	width:400px;
+	-webkit-border-radius:0 20px;
+	-moz-border-radius:0 20px;
+	-o-border-radius:0 20px;
+	border-radius:10px;
+}
+#box .prev, #box .next {
+	width:25px;
+	height:25px;
+	float:left;
+	line-height:25px;
+	text-align:center;
+	vertical-align:middle;
+	background-color:#f00;
+	font-family:webdings;
+}
+#box .prev:hover, #box .next:hover {
+	background-image: -moz-linear-gradient(top, #ff3300, #663333);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ff3300), to(#663333));
+}
+#box .prev {
+	border-radius:45px 0 0 45px;
+}
+#box .next {
+	border-radius:0 45px 45px 0;
+}
+#box .prev a, #box .next a {
+	display:block;
+	color:#FFF;
+	text-decoration:none;
+}
+</style>
+<style type="text/css">
+#but {
+	height:20px;
+	font-size:12px;
+	padding:0 40px;
+}
+#but a {
+	display:block;
+	float:left;
+	background-image: -moz-linear-gradient(top, #ffffcc, #ffcc99);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffcc), to(#ffcc99));
+	padding:0 10px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	color:#333;
+	text-decoration:none;
+	border-style:solid;
+	border-color:#f90;
+	border-width:1px 0 1px 0;
+}
+#but .first {
+	border-radius:10px 0 0 10px;
+	border-width:1px;
+}
+#but .last {
+	border-radius:0 10px 10px 0;
+	border-width:1px;
+}
+#but a:hover {
+	background-image: -moz-linear-gradient(top, #ff3300, #663333);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ff3300), to(#663333));
+	color:#FFF;
+}
+#but .more {
+	float:right;
+	-webkit-border-image:url(../images/button.png) 10/5px;
+	-moz-border-image:url(../images/button.png) 10/5px;
+	-o-border-image:url(../images/button.png) 10/5px;
+	border-image:url(../images/button.png) 10/5px;
+	padding:0 10px;
+	color:#FFF;
+	cursor:pointer;
+}
+</style>
+</head>
+<body>
+<!--显示区域-->
+<div id="area"> 
+  <!--导航部分-->
+  <ul id="nav">
+    <li class="cur">风景</li>
+    <li>人物</li>
+    <li>素材</li>
+  </ul>
+  <!--搜索部分-->
+  <div id="search">
+    <input type="text" name="key" value="" />
+    <input type="submit" value="GO" />
+  </div>
+  <!--图片切换预览部分-->
+  <div id="box">
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><div class="prev"><a href="#">3</a></div></td>
+        <td class="pics"><img src="../images/Iceland.jpg" /></td>
+        <td><div class="next"><a href="#">4</a></div></td>
+      </tr>
+    </table>
+  </div>
+  <!--功能按钮部分-->
+  <div id="but"><a class="first" href="#">分享</a><a href="#">转发</a><a class="last" href="#">收藏</a>
+  <span class="more">列表模式</span></div>
+</div>
+</body>
+</html>

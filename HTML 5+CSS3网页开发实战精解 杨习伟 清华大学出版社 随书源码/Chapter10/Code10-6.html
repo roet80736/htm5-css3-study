@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>使用checkValidity()方法显式验证表单</title>
+<script type="text/javascript">
+function CheckForm(frm){
+	if(frm.myEmail.checkValidity()){      /* 显示验证邮件 */
+		alert("邮件格式正确！");
+	}else{
+		alert("邮件格式错误！");
+	}
+}
+</script>
+</head>
+<body>
+<div>
+  <form action="" method="post">
+    邮件：
+    <input type="email" name="myEmail" id="myEmail" value="yxw740@163.com" />
+    <br />
+    <input type="submit" value="提交" onclick="return CheckForm(this.form)" />
+  </form>
+</div>
+</body>
+</html>

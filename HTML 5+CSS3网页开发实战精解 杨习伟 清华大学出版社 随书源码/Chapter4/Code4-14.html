@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>盒子的溢出处理</title>
+<style type="text/css">
+div {
+	margin:10px;
+	width:200px;
+	height:80px;
+	padding:10px;
+	border:1px solid #f90;
+	float:left;
+}
+#box1 {
+	overflow-x:scroll;      /* 水平方向属性值为scroll */
+	overflow-y:scroll;      /* 垂直方向属性值为scroll */
+}
+#box2 {
+	overflow-x:auto;        /* 水平方向属性值为auto */
+	overflow-y:auto;        /* 垂直方向属性值为auto */
+}
+#box3 {
+	overflow-x:hidden;      /* 水平方向属性值为hidden */
+	overflow-y:hidden;      /* 垂直方向属性值为hidden */
+}
+#box4 {
+	overflow-x:visible;     /* 水平方向属性值为visible */
+	overflow-y:visible;     /* 垂直方向属性值为visible */
+}
+</style>
+</head>
+<body>
+<div id="box1">盒模型是网页设计中最基本、最重要的模型。CSS3新增的与盒模型有关的属性如盒子阴影、盒子尺寸和溢出处理等，为前端设计师带来更多的便利及人性化设计。</div>
+<div id="box2">盒模型是网页设计中最基本、最重要的模型。CSS3新增的与盒模型有关的属性如盒子阴影、盒子尺寸和溢出处理等，为前端设计师带来更多的便利及人性化设计。</div>
+<div id="box3">盒模型是网页设计中最基本、最重要的模型。CSS3新增的与盒模型有关的属性如盒子阴影、盒子尺寸和溢出处理等，为前端设计师带来更多的便利及人性化设计。</div>
+<div id="box4">盒模型是网页设计中最基本、最重要的模型。CSS3新增的与盒模型有关的属性如盒子阴影、盒子尺寸和溢出处理等，为前端设计师带来更多的便利及人性化设计。</div>
+</body>
+</html>

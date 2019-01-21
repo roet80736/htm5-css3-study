@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="uft-8" />
+<title>跨源请求</title>
+<script type="text/javascript">
+function AjaxRequest(){
+	var xmlHttp = new XMLHttpRequest();
+	if(typeof xmlHttp.withCredentials==="undefined"){
+		alert("你的浏览器不支持跨源请求");
+		return;
+	}
+	xmlHttp.onabort=function(e){
+		SetProgress("请求中断");
+	}
+	xmlHttp.onerror=function(e){
+		SetProgress("请求失败");
+	}
+	xmlHttp.onload=function(e){
+		SetProgress("请求完成.");
+		var obj = document.getElementById("response");
+		obj.innerText = xmlHttp.responseText;
+	}
+	xmlHttp.onloadstart=function(e){
+		SetProgress("请求开始");
+	}
+	xmlHttp.onprogress=function(e){
+		SetProgress("请求中...");
+	}
+	xmlHttp.open("get","http://yang:8081/Chapter14/cors.aspx",true);
+	xmlHttp.send(null);
+	
+	
+}
+function SetProgress(str){
+	var obj = document.getElementById("progress");
+	var p = document.createElement("p");
+	p.innerText = str;
+	obj.appendChild(p);
+}
+
+</script>
+<style type="text/css">
+body{
+	font-size:12px;
+	line-height:25px;
+}
+.pad10{
+	padding:10px;
+	border:1px solid #CCCCCC;
+}
+.pad10 p{
+	line-height:18px;
+	border-top:1px dashed #CCCCCC;
+	padding:0;
+	margin:0;
+	text-indent:2em;
+}
+</style>
+</head>
+<body>
+<form name="form1" method="post" action="">
+	<input name="button" type="button" value="请求资源" onclick="AjaxRequest()" />
+	<div class="pad10">响应信息：
+		<p id="response"></p>
+	</div>
+	<div id="progress" class="pad10">进度状态：
+		<p>预备</p>
+	</div>
+</form>
+</body>
+</html>

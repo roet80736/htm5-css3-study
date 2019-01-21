@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>图像的原点位置</title>
+<style type="text/css">
+div {
+	padding:50px;                               /* 设置内边距为50px */
+	border:50px solid rgba(255, 153, 0, 0.6);   /* 设置边框宽度为50px */
+	height:100px;
+	width:200px;
+	color:#fff;
+	font-size:24px;
+	font-weight:bold;
+	text-shadow:2px 0 1px #f00,
+			-2px 0 1px #f00,
+			0 2px 1px #f00,
+			0 -2px 1px #f00;
+	background-image:url(../images/Bridge.jpg); /* 设置背景图像 */
+	background-position:0 0;                    /* 背景图像起始位为原点 */
+	background-repeat:no-repeat;                /* 背景图像不平铺 */
+	-webkit-background-origin:border-box;           /* 原点从边开始（webkit） */
+	-moz-background-origin:border-box;              /* 原点从边开始（moz） */
+	background-origin:border-box;                   /* 原点从边开始 */
+}
+</style>
+<body>
+<div>内容从这里开始</div>
+</body>
+</html>

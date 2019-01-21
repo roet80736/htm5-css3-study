@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>具有空间弹性的菜单栏</title>
+<style type="text/css">
+.container {
+	width:100%;                   /* 设置盒元素的宽度为100% */
+	background-color:#CCC;
+	display:-webkit-box;
+	display:-moz-box;
+	display:box;
+}
+.container div {
+	color:#FFF;
+	font-size:12px;
+	padding:10px;
+	line-height:20px;
+	width:100px;                  /* 设置三个栏目的固定宽度100px */
+}
+.container div ul {
+	margin:0;
+	padding-left:20px;
+}
+.container .left-aside {
+	background-color:#F63;
+	/* 设置菜单栏具有空间弹性 */
+	-webkit-box-flex:1;            /* 兼容webkit内核 */
+	-moz-box-flex:1;               /* 兼容gecko内核 */
+	box-flex:1;                    /* 标准用法 */
+}
+.container .center-content {
+	background-color:#390;
+	/* 设置文章列表栏有空间弹性 */
+	-webkit-box-flex:2;            /* 兼容webkit内核 */
+	-moz-box-flex:2;               /* 兼容gecko内核 */
+	box-flex:2;                   /* 标准用法 */
+}
+.container .right-aside {
+	background-color:#039;
+}
+</style>
+<body>
+<div class="container">
+  <div class="left-aside">
+    <h2>菜单</h2>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3</li>
+      <li>活动沙龙</li>
+    </ul>
+  </div>
+  <div class="center-content">
+    <h2>文章列表</h2>
+    <ul>
+      <li>文本阴影</li>
+      <li>色彩模式</li>
+      <li>多重背景</li>
+      <li>边框圆角</li>
+      <li>新型盒布局</li>
+      <li>盒子阴影</li>
+    </ul>
+  </div>
+  <div class="right-aside">
+    <h2>工具</h2>
+    <ul>
+      <li>天气预报</li>
+      <li>货币汇率</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
